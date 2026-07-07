@@ -1,5 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Nos Services",
+  description:
+    "Découvrez les soins de médecine esthétique d'Iconic Clinic à Mohammedia : Endolift, Smart Lipo, Botox, PRP, Skin Booster, HIFU, épilation laser, Hydrafacial et plus.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Nos Services | Iconic Clinic Mohammedia",
+    description:
+      "Découvrez les soins de médecine esthétique d'Iconic Clinic à Mohammedia : Endolift, Smart Lipo, Botox, PRP, Skin Booster, HIFU, épilation laser, Hydrafacial et plus.",
+    url: "/services",
+  },
+};
 
 const serviceCategories = [
   {
@@ -123,7 +137,7 @@ export default function ServicesPage() {
       <header className="relative h-[55vh] min-h-[420px] w-full overflow-hidden">
         <Image
           src="/new-hero.jpg"
-          alt="Iconic Clinic Services"
+          alt="Services de médecine esthétique proposés par Iconic Clinic à Mohammedia"
           fill
           className="object-cover"
           priority
@@ -223,10 +237,10 @@ export default function ServicesPage() {
           </div>
 
           <Link
-            href="/"
-            className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black"
+            href="/contact"
+            className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90"
           >
-            Retour à l’accueil
+            Prendre rendez-vous
           </Link>
         </div>
       </section>

@@ -1,9 +1,69 @@
+import type { Metadata } from "next";
+import Script from "next/script";
 import FaqServicePage from "@/components/FaqServicePage";
+
+export const metadata: Metadata = {
+  title: "FAQ Cheveux — Chute et Densité",
+  description:
+    "Toutes les réponses à vos questions sur la chute de cheveux, la densité capillaire et les traitements disponibles à Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq/cheveux" },
+  openGraph: {
+    title: "FAQ Cheveux | Iconic Clinic Mohammedia",
+    description:
+      "Toutes les réponses à vos questions sur la chute de cheveux, la densité capillaire et les traitements disponibles à Iconic Clinic Mohammedia.",
+    url: "/faq/cheveux",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Quels problèmes capillaires pouvez-vous prendre en charge ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Les soins capillaires peuvent aider en cas de chute, de perte de densité, de cheveux affinés ou de cuir chevelu fragilisé.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Quand voit-on les premiers résultats ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Les résultats capillaires demandent souvent un peu de patience. L'amélioration se fait généralement de manière progressive.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Est-ce que les soins conviennent aux hommes et aux femmes ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Oui, les protocoles peuvent être adaptés aussi bien aux femmes qu'aux hommes selon la cause et le type de chute.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Combien de séances sont nécessaires ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Cela dépend du diagnostic, de l'ancienneté du problème et du protocole recommandé. Un programme personnalisé est établi en consultation.",
+      },
+    },
+  ],
+};
 
 export default function Page() {
   return (
-    <FaqServicePage
-      image="/faq-cheveux.jpg"
+    <>
+      <Script
+        id="faq-cheveux-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FaqServicePage
+      image="/clinic.jpg"
       slugLabelFr="Cheveux"
       slugLabelAr="الشعر"
       fr={{
@@ -90,6 +150,7 @@ export default function Page() {
           },
         ],
       }}
-    />
+      />
+    </>
   );
 }

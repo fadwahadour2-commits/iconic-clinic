@@ -1,9 +1,85 @@
+import type { Metadata } from "next";
+import Script from "next/script";
 import FaqServicePage from "@/components/FaqServicePage";
+
+export const metadata: Metadata = {
+  title: "FAQ Silhouette — Remodelage Corporel",
+  description:
+    "Toutes les réponses à vos questions sur le remodelage silhouette, la graisse localisée et les traitements corporels chez Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq/silhouette" },
+  openGraph: {
+    title: "FAQ Silhouette — Remodelage Corporel | Iconic Clinic Mohammedia",
+    description:
+      "Toutes les réponses à vos questions sur le remodelage silhouette, la graisse localisée et les traitements corporels chez Iconic Clinic Mohammedia.",
+    url: "/faq/silhouette",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Les soins silhouette font-ils maigrir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ces traitements ne remplacent pas une perte de poids. Ils visent surtout à affiner certaines zones, améliorer la fermeté et harmoniser la silhouette."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles zones peuvent être traitées ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Selon le protocole choisi, plusieurs zones peuvent être ciblées comme le ventre, les cuisses, les bras, les hanches ou d’autres zones localisées."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les résultats sont-ils immédiats ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certains changements peuvent être perçus rapidement, mais les résultats les plus visibles apparaissent souvent progressivement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Est-ce adapté après une grossesse ou une perte de poids ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, dans de nombreux cas, après évaluation. Le traitement proposé dépendra de la qualité de la peau, de la zone concernée et de l’objectif recherché."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il faire du sport en complément ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une bonne hygiène de vie aide à optimiser et maintenir les résultats, même si le protocole reste personnalisé selon chaque patient."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de séances faut-il pour voir une amélioration ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le nombre de séances varie selon la zone, la qualité tissulaire et l’objectif. Une consultation permet d’établir un programme adapté."
+      }
+    }
+  ]
+};
 
 export default function Page() {
   return (
-    <FaqServicePage
-      image="/faq-silhouette.jpg"
+    <>
+      <Script
+        id="faq-silhouette-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FaqServicePage
+      image="/clinic.jpg"
       slugLabelFr="Silhouette"
       slugLabelAr="القوام"
       fr={{
@@ -90,6 +166,7 @@ export default function Page() {
           },
         ],
       }}
-    />
+      />
+    </>
   );
 }

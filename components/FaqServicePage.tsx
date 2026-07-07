@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type FaqItem = {
   q: string;
@@ -46,6 +46,11 @@ export default function FaqServicePage({
   const isArabic = lang === "ar";
   const t = isArabic ? ar : fr;
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
+  }, [lang, isArabic]);
+
   return (
     <main
       dir={isArabic ? "rtl" : "ltr"}
@@ -69,6 +74,8 @@ export default function FaqServicePage({
               <div className="rounded-full border border-white/30 bg-white/10 p-1 backdrop-blur">
                 <button
                   onClick={() => setLang("fr")}
+                  aria-pressed={!isArabic}
+                  aria-label="Afficher en français"
                   className={`rounded-full px-3 py-1.5 text-sm ${
                     !isArabic ? "bg-white text-black" : "text-white"
                   }`}
@@ -77,6 +84,8 @@ export default function FaqServicePage({
                 </button>
                 <button
                   onClick={() => setLang("ar")}
+                  aria-pressed={isArabic}
+                  aria-label="عرض بالعربية"
                   className={`rounded-full px-3 py-1.5 text-sm ${
                     isArabic ? "bg-white text-black" : "text-white"
                   }`}
@@ -155,6 +164,7 @@ export default function FaqServicePage({
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
+                  aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left md:px-7"
                 >
                   <span className="text-lg font-medium leading-8 text-black underline underline-offset-4 md:text-[22px]">
@@ -162,6 +172,7 @@ export default function FaqServicePage({
                   </span>
 
                   <span
+                    aria-hidden="true"
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black text-xl transition ${
                       isOpen ? "rotate-45 bg-black text-white" : ""
                     }`}

@@ -1,9 +1,85 @@
+import type { Metadata } from "next";
+import Script from "next/script";
 import FaqServicePage from "@/components/FaqServicePage";
+
+export const metadata: Metadata = {
+  title: "FAQ Médecine Esthétique",
+  description:
+    "Toutes les réponses à vos questions sur la médecine esthétique, la douleur, les résultats et le temps de récupération chez Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq/medecine-esthetique" },
+  openGraph: {
+    title: "FAQ Médecine Esthétique | Iconic Clinic Mohammedia",
+    description:
+      "Toutes les réponses à vos questions sur la médecine esthétique, la douleur, les résultats et le temps de récupération chez Iconic Clinic Mohammedia.",
+    url: "/faq/medecine-esthetique",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "La médecine esthétique est-elle douloureuse ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La plupart des soins sont très bien tolérés. Selon le traitement, une crème anesthésiante ou des techniques de confort peuvent être utilisées."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les résultats sont-ils naturels ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l’objectif est d’embellir le visage tout en respectant son harmonie naturelle, sans effet figé ni artificiel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps durent les résultats ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cela dépend du soin réalisé, du mode de vie et du profil du patient. Certains résultats sont visibles rapidement, d’autres s’améliorent progressivement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il un temps de récupération ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La plupart des traitements permettent une reprise rapide des activités. Une légère rougeur ou un petit gonflement peuvent parfois apparaître temporairement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "À partir de quel âge peut-on commencer ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il n’y a pas d’âge unique. Tout dépend du besoin, de l’indication médicale et de l’évaluation personnalisée réalisée en consultation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment savoir quel traitement me convient ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un diagnostic personnalisé permet de choisir le soin le plus adapté à votre visage, vos attentes et votre objectif esthétique."
+      }
+    }
+  ]
+};
 
 export default function Page() {
   return (
-    <FaqServicePage
-      image="/faq-medecine-esthetique.jpg"
+    <>
+      <Script
+        id="faq-medecine-esthetique-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FaqServicePage
+      image="/clinic.jpg"
       slugLabelFr="Médecine esthétique"
       slugLabelAr="الطب التجميلي"
       fr={{
@@ -90,6 +166,7 @@ export default function Page() {
           },
         ],
       }}
-    />
+      />
+    </>
   );
 }

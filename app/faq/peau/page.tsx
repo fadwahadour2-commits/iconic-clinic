@@ -1,9 +1,85 @@
+import type { Metadata } from "next";
+import Script from "next/script";
 import FaqServicePage from "@/components/FaqServicePage";
+
+export const metadata: Metadata = {
+  title: "FAQ Peau — Soins du Visage",
+  description:
+    "Toutes les réponses à vos questions sur les soins de la peau, l'acné, les taches et l'éclat du teint chez Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq/peau" },
+  openGraph: {
+    title: "FAQ Peau — Soins du Visage | Iconic Clinic Mohammedia",
+    description:
+      "Toutes les réponses à vos questions sur les soins de la peau, l'acné, les taches et l'éclat du teint chez Iconic Clinic Mohammedia.",
+    url: "/faq/peau",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quels problèmes de peau pouvez-vous traiter ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les soins peuvent aider à améliorer l’éclat, la texture, les pores, les imperfections, les taches et les signes de fatigue cutanée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de séances faut-il prévoir ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le nombre de séances varie selon l’état de la peau et le protocole recommandé. Un plan personnalisé est défini après évaluation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les soins conviennent-ils aux peaux sensibles ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, à condition de choisir un protocole adapté. Chaque peau est différente, c’est pourquoi l’approche doit être personnalisée."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand voit-on les résultats ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certains effets sont visibles dès les premiers jours, tandis que d’autres apparaissent de façon progressive au fil des séances."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on reprendre le maquillage après un soin ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cela dépend du traitement effectué. Pour certains soins, il est conseillé d’attendre quelques heures ou jusqu’au lendemain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment entretenir les résultats ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une bonne routine à domicile, une protection solaire régulière et des séances d’entretien peuvent prolonger les bénéfices du soin."
+      }
+    }
+  ]
+};
 
 export default function Page() {
   return (
-    <FaqServicePage
-      image="/faq-peau.jpg"
+    <>
+      <Script
+        id="faq-peau-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FaqServicePage
+      image="/clinic.jpg"
       slugLabelFr="Peau"
       slugLabelAr="العناية بالبشرة"
       fr={{
@@ -90,6 +166,7 @@ export default function Page() {
           },
         ],
       }}
-    />
+      />
+    </>
   );
 }

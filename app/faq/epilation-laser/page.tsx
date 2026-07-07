@@ -1,9 +1,85 @@
+import type { Metadata } from "next";
+import Script from "next/script";
 import FaqServicePage from "@/components/FaqServicePage";
+
+export const metadata: Metadata = {
+  title: "FAQ Épilation Laser",
+  description:
+    "Toutes les réponses à vos questions sur l'épilation laser : douleur, nombre de séances, zones traitées chez Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq/epilation-laser" },
+  openGraph: {
+    title: "FAQ Épilation Laser | Iconic Clinic Mohammedia",
+    description:
+      "Toutes les réponses à vos questions sur l'épilation laser : douleur, nombre de séances, zones traitées chez Iconic Clinic Mohammedia.",
+    url: "/faq/epilation-laser",
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Est-ce que l’épilation au laser fait mal ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La sensation varie selon la zone traitée et la sensibilité de la personne. En général, elle est décrite comme un léger picotement ou une sensation de chaleur brève."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de séances sont nécessaires pour une épilation au laser ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le nombre de séances dépend de la zone, du type de peau, de la couleur du poil et de la réponse individuelle au traitement. Plusieurs séances sont souvent nécessaires pour un résultat optimal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les poils qui réagissent le mieux à l’épilation au laser ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les poils plus foncés et plus épais répondent généralement mieux au traitement, car le laser cible la mélanine présente dans le poil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on raser entre deux séances ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, le rasage est généralement autorisé entre les séances. En revanche, il est souvent déconseillé d’arracher le poil à la racine entre deux rendez-vous."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on faire du laser sur toutes les zones du corps ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le traitement peut concerner plusieurs zones du visage et du corps, selon l’indication, le type de peau et l’évaluation réalisée en consultation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le laser est-il adapté aux hommes et aux femmes ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, l’épilation laser peut être proposée aussi bien aux femmes qu’aux hommes, selon la zone à traiter et le type de pilosité."
+      }
+    }
+  ]
+};
 
 export default function Page() {
   return (
-    <FaqServicePage
-      image="/faq-laser.jpg"
+    <>
+      <Script
+        id="faq-epilation-laser-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FaqServicePage
+      image="/clinic.jpg"
       slugLabelFr="Epilation laser"
       slugLabelAr="إزالة الشعر بالليزر"
       fr={{
@@ -162,6 +238,7 @@ export default function Page() {
           },
         ],
       }}
-    />
+      />
+    </>
   );
 }

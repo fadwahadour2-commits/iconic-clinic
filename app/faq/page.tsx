@@ -1,4 +1,18 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ — Questions Fréquentes",
+  description:
+    "Toutes les réponses à vos questions sur la médecine esthétique, la peau, les cheveux, la silhouette et l'épilation laser chez Iconic Clinic Mohammedia.",
+  alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "FAQ — Questions Fréquentes | Iconic Clinic",
+    description:
+      "Toutes les réponses à vos questions sur la médecine esthétique, la peau, les cheveux, la silhouette et l'épilation laser chez Iconic Clinic Mohammedia.",
+    url: "/faq",
+  },
+};
 
 export default function FaqIndexPage() {
   return (
